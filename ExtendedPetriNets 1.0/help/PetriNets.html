@@ -1,0 +1,567 @@
+<HTML>
+<HEAD><META name="HTML-Generator" content="Dymola"><TITLE>PetriNets</TITLE></HEAD>
+<BODY><P>
+<H2><A NAME="PetriNets"></A>PetriNets</H2>
+<B>Library to model timed, stochastic Petri nets and state transition diagrams, extended version.</B>
+<P>
+<A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces"
+><IMG SRC="PetriNets.InterfacesI.gif" ALT="PetriNets.Interfaces" WIDTH=80  HEIGHT=80 ></A>
+<A HREF="PetriNets_Examples.html#PetriNets.Examples"
+><IMG SRC="PetriNets.ExamplesI.gif" ALT="PetriNets.Examples" WIDTH=80  HEIGHT=80 ></A>
+<A HREF="PetriNets.html#PetriNets.Place01"
+><IMG SRC="PetriNets.Place01I.gif" ALT="PetriNets.Place01" WIDTH=80  HEIGHT=80 ></A>
+<A HREF="PetriNets.html#PetriNets.Place10"
+><IMG SRC="PetriNets.Place10I.gif" ALT="PetriNets.Place10" WIDTH=80  HEIGHT=80 ></A>
+<A HREF="PetriNets.html#PetriNets.Place11"
+><IMG SRC="PetriNets.Place11I.gif" ALT="PetriNets.Place11" WIDTH=80  HEIGHT=80 ></A>
+<A HREF="PetriNets.html#PetriNets.Place21"
+><IMG SRC="PetriNets.Place21I.gif" ALT="PetriNets.Place21" WIDTH=80  HEIGHT=80 ></A>
+<A HREF="PetriNets.html#PetriNets.Place12"
+><IMG SRC="PetriNets.Place12I.gif" ALT="PetriNets.Place12" WIDTH=80  HEIGHT=80 ></A>
+<A HREF="PetriNets.html#PetriNets.Place22"
+><IMG SRC="PetriNets.Place22I.gif" ALT="PetriNets.Place22" WIDTH=80  HEIGHT=80 ></A>
+<A HREF="PetriNets.html#PetriNets.Transition"
+><IMG SRC="PetriNets.TransitionI.gif" ALT="PetriNets.Transition" WIDTH=80  HEIGHT=80 ></A>
+<A HREF="PetriNets.html#PetriNets.Parallel"
+><IMG SRC="PetriNets.ParallelI.gif" ALT="PetriNets.Parallel" WIDTH=80  HEIGHT=80 ></A>
+<A HREF="PetriNets.html#PetriNets.Synchronize"
+><IMG SRC="PetriNets.SynchronizeI.gif" ALT="PetriNets.Synchronize" WIDTH=80  HEIGHT=80 ></A>
+<A HREF="PetriNets_Modules.html#PetriNets.Modules"
+><IMG SRC="PetriNets.ModulesI.gif" ALT="PetriNets.Modules" WIDTH=80  HEIGHT=80 ></A>
+<A HREF="PetriNets_ExamplesExtendedPetriNets.html#PetriNets.ExamplesExtendedPetriNets"
+><IMG SRC="PetriNets.ExamplesExtendedPetriNetsI.gif" ALT="PetriNets.ExamplesExtendedPetriNets" WIDTH=80  HEIGHT=80 ></A>
+<A HREF="PetriNets_Extensions.html#PetriNets.Extensions"
+><IMG SRC="PetriNets.ExtensionsI.gif" ALT="PetriNets.Extensions" WIDTH=80  HEIGHT=80 ></A>
+<P><P>
+<H3>Information</H3>
+<PRE>
+</PRE>
+
+<p>
+The standard Modelica library contains a sub-library <b><i>PetriNet</i></b>
+for modeling of discrete phenomena with Petri net formalism. It is designed for, and
+implements, black deterministic priority Petri nets, which are well suited e.g.,
+for control system specification but can have rather limited expressiveness
+in other problem domains.  Such may be in reliability engineering or in
+investigation of socio-technical aspects of complex technical systems.
+</p>
+
+<p>
+Therefore, the Petri net library already available is extended to form a
+new library <b><i>ExtendedPetriNet</i></b> with
+
+<ol>
+<li>transitions allowing for deterministic or stochastic time delays before their firing
+    (using builit-in random number generators BIRNG or custom made ones), and </li>
+
+<li>places capable of containing more than one token, </li>
+</ol>
+
+such that timed, stochastic Petri nets can be modeled.
+</p>
+
+<p>
+Several modeling and simulation examples are given to demonstrate the usability of the
+enhancements - among them - queuing models and models to determine system availability,
+see the adjoned *.pdf document <b><a href="../Petri_Net_Extensions.pdf">
+Petri_Net_Extensions</a></b>.
+</p>
+
+<p>
+For the time being, the extended library is currently structured in a manner
+that all extensions are
+clearly seperated from the original Petri net library.
+Three sub-packages have been added:
+
+<ol>
+<li>Extensions</li>
+<li>Modules</li>
+<li>ExamplesExtendedPetriNets.</li>
+</ol>
+
+At a later time, the additions could be fully integrated if desired.
+</p>
+
+
+<dl>
+<dt><b>Author:</b>
+<dd><a href="http://www.lsa.ethz.ch/lsa/faculty/docstu/fabricius/index.html
+">Stefan Fabricius</a><br>
+    Swiss Federal Institute of Technology (ETH)<br>
+    Laboratory for Safety Analysis<br>
+    Weinbergstrasse 11<br>
+    8001 Zurich<br>
+    Switzerland<br>
+    email: <A HREF="mailto:fabricius@lsa.iet.mavt.ethz.ch">fabricius@lsa.iet.mavt.ethz.ch</A><br>
+</dl>
+<br>
+
+<p><b>Release History and Notes:</b></p>
+<ul>
+<li><i>April 11th, 2002</i>, Version 1.0<br> </li>
+</ul>
+<br>
+
+<p><b>Copyright (C) 2002, with the author.</b></p>
+
+<p>
+The <b><i>ExtendedPetriNet</i></b> library is <b>free</b> software;  it can be redistributed and/or modified
+under the terms of the <a href="../ModelicaLicense.html">Modelica license</a>, see the license conditions in the documentation
+to Modelica.
+</p>
+
+<p>
+The library comes with absolutely no warranty.  It has been carefully tested, yet, the absence
+of faults or bugs cannot be guaranteed.
+</p>
+
+<p>
+Comments or bug reports are most welcome.
+</p>
+
+<p>
+<hr>
+Below listed is the information to the orginal, not extended <b><i>PetriNet</i></b> library.
+<hr>
+</p>
+
+<p>
+The <b>PetriNets</b> library allows to model <b>discrete</b> components by
+a special kind of <b>Petri nets</b> with at most one token on a place,
+as well as by <b>state transition diagrams</b>
+(which are special kinds of Petri nets). Petri nets
+and state transition diagrams are "higher level" constructs for the description of
+switching elements, parallel activities or syncronization. For several kinds
+of applications it is much easier and clearer to use these components instead
+of modeling the discrete behaviour directly with the basic language constructs
+of Modelica ("if" or "when" statements). A typical Petri net is shown
+in the following figure:
+</p>
+
+<IMG SRC="PetriNet1.gif" ALT="Petri net">
+
+<p>
+A <b>Petri net</b> is defined in the following way:
+</p>
+
+<ol>
+<li>It consists of a set of <b>places</b> and of a set of <b>transitions</b>.
+    The places are split into start places which are "active" at the start
+    of the simulation and of "normal" places which are "non-active" at the
+    beginning. </li>
+
+<li>Places are connected by <b>transitions</b>, whereby no places and no
+    transitions are directly connected (i.e., a place is connected to a
+    transition which in turn is connected to another place).
+    Any number of start places can be present. </li>
+
+<li>An "<b>active</b>" place is characterized by a "<b>token</b>"
+    placed on the place. In the ModelicaAdditions.PetriNets libray a place
+    is "active" when the public variable "<b>state</b>" of the place
+    is <b>true</b>.</li>
+
+<li>There are <b>several transition</b> elements in the library. Whenever the
+    <b>states</b> of <b>all inputs</b> to the transition elements are <b>active</b>
+    and when the <b>condition</b> of the transition is <b>true</b> then the
+    following actions are performed:
+    <ul>
+    <li>all <b>input states</b> are marked as "<b>inactive</b>", i.e.,
+        the token is removed.</li>
+    <li>all <b>output states</b> are marked as "<b>active</b>", i.e.,
+        they are marked by new tokens.</li>
+    </ul>
+    The <b>conditionPort</b> connector of a transition element is used
+    to signal via a Boolean signal whether the condition of a transition is
+    true or false. Alternatively, the condition can be provided as an
+    equation to set the public variable <b>condition</b> of the
+    corresponding transition element.</li>
+
+<li>There are several <b>place</b> components in this library
+    (such as Place01, Place10, Place11) which have
+    different number of input and output transition connectors.
+    This is due to the current limitations of the annotations of
+    Modelica, which do not allow to define the graphical location of
+    the elements of a vector of (transition) connectors with unknown length.
+    </li>
+
+<li>If two or more transitions of a place would fire at the same time
+    instant, <b>priorities</b> are used in order that exactly one of them fires.
+    The highest priority has a transition connector of a place with the
+    lowest index (e.g. outTransition1 has a higher priority as
+    outTransition2).
+</ol>
+
+<p>
+The method used in this library to realize Petri nets in Modelica
+is described in detail in:
+</p>
+
+<dl>
+<dt>Mosterman P.J., Otter M. and Elmqvist H. (1998):
+<dd><b>Modeling Petri-Nets as Local Constraint Equations
+    for Hybrid Systems using Modelica.</b>
+    1998 Summer Computer Simulation Conference (SCSC'98),
+    Reno, U.S.A., 19.-20. Juli (download from
+    <a href="http://www.Modelica.org/papers/scsc98fp.pdf">here</a>).
+</dl>
+
+<p>
+This package is not part of the Modelica standard library, because it is
+planned to realize a package with only <b>one</b> place and <b>one</b>
+transition component, once vector connectors with unknown length have better
+support in Modelica.
+</p>
+
+<dl>
+<dt><b>Main Author:</b>
+<dd><a href="http://www.op.dlr.de/~otter/">Martin Otter</a><br>
+    Deutsches Zentrum f&uuml;r Luft und Raumfahrt e.V. (DLR)<br>
+    Institut f&uuml;r Robotik und Mechatronik<br>
+    Postfach 1116<br>
+    D-82230 Wessling<br>
+    Germany<br>
+    email: <A HREF="mailto:Martin.Otter@dlr.de">Martin.Otter@dlr.de</A><br>
+</dl>
+<br>
+
+<p><b>Release Notes:</b></p>
+<ul>
+<li><i>June 12, 2000</i>
+       by <a href="http://www.op.dlr.de/~otter/">Martin Otter</a>:<br>
+       Realized.</li>
+</ul>
+<br>
+
+<p><b>Copyright (C) 2000, DLR.</b></p>
+
+<p><i>
+The ModelicaAdditions.PetriNets package is <b>free</b> software;
+it can be redistributed and/or modified
+under the terms of the <b>Modelica license</b>, see the license conditions
+and the accompanying <b>disclaimer</b> in the documentation of package
+Modelica in file "Modelica/package.mo".
+</i></p>
+
+<br>
+The extensions to the original are not specifically internally documented at this time.
+Copyright for extensions with S. Fabricius, ETH Zurich, Switzerland, December 20th, 2001.
+
+
+<PRE>
+</PRE><P>
+<HR>
+<H2><IMG SRC="PetriNets.Place01I.gif" ALT="PetriNets.Place01" ALIGN=RIGHT BORDER=1 WIDTH=80  HEIGHT=80 >
+<A NAME="PetriNets.Place01"></A><A HREF="PetriNets.html#PetriNets"
+>PetriNets</A>.Place01</H2>
+<B>Place with one output transition</B><p>
+<IMG SRC="PetriNets.Place01D.gif" ALT="PetriNets.Place01">
+<H3>Parameters</H3><P>
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2>
+<TR><TH>Name</TH><TH>Default</TH><TH>Description</TH></TR>
+<TR><TD>initialState</TD><TD>false</TD><TD>Initial value of state</TD></TR>
+</TABLE>
+<H3>Modelica definition</H3>
+<PRE>
+model Place01 &quot;Place with one output transition&quot;
+  parameter Boolean initialState=false &quot;Initial value of state&quot;;
+  Boolean state(final start=initialState) &quot;State of place&quot;;
+protected
+  Boolean newState(final start=initialState);
+public
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.FirePortOut"
+>PetriNets.Interfaces.FirePortOut</A> outTransition;
+equation
+  <I>// Set new state for next iteration</I>
+  state = pre(newState);
+  newState = state and not outTransition.fire;
+  <I></I>
+  <I>// Report state to output transition</I>
+  outTransition.state = state;
+end Place01;
+</PRE>
+<HR>
+<H2><IMG SRC="PetriNets.Place10I.gif" ALT="PetriNets.Place10" ALIGN=RIGHT BORDER=1 WIDTH=80  HEIGHT=80 >
+<A NAME="PetriNets.Place10"></A><A HREF="PetriNets.html#PetriNets"
+>PetriNets</A>.Place10</H2>
+<B>Place with one input transition</B><p>
+<IMG SRC="PetriNets.Place10D.gif" ALT="PetriNets.Place10">
+<H3>Parameters</H3><P>
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2>
+<TR><TH>Name</TH><TH>Default</TH><TH>Description</TH></TR>
+<TR><TD>initialState</TD><TD>false</TD><TD>Initial value of state</TD></TR>
+</TABLE>
+<H3>Modelica definition</H3>
+<PRE>
+model Place10 &quot;Place with one input transition&quot;
+  parameter Boolean initialState=false &quot;Initial value of state&quot;;
+  Boolean state(final start=initialState) &quot;State of place&quot;;
+protected
+  Boolean newState(final start=initialState);
+public
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.SetPortIn"
+>PetriNets.Interfaces.SetPortIn</A> inTransition;
+equation
+  <I>// Set new state for next iteration</I>
+  state = pre(newState);
+  newState = inTransition.set or state;
+  <I></I>
+  <I>// Report state to input transition</I>
+  inTransition.state = state;
+end Place10;
+</PRE>
+<HR>
+<H2><IMG SRC="PetriNets.Place11I.gif" ALT="PetriNets.Place11" ALIGN=RIGHT BORDER=1 WIDTH=80  HEIGHT=80 >
+<A NAME="PetriNets.Place11"></A><A HREF="PetriNets.html#PetriNets"
+>PetriNets</A>.Place11</H2>
+<B>Place with one input and one output transition</B><p>
+<IMG SRC="PetriNets.Place11D.gif" ALT="PetriNets.Place11">
+<H3>Parameters</H3><P>
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2>
+<TR><TH>Name</TH><TH>Default</TH><TH>Description</TH></TR>
+<TR><TD>initialState</TD><TD>false</TD><TD>Initial value of state</TD></TR>
+</TABLE>
+<H3>Modelica definition</H3>
+<PRE>
+model Place11 &quot;Place with one input and one output transition&quot;
+  parameter Boolean initialState=false &quot;Initial value of state&quot;;
+  Boolean state(final start=initialState) &quot;State of place&quot;;
+protected
+  Boolean newState(final start=initialState);
+public
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.SetPortIn"
+>PetriNets.Interfaces.SetPortIn</A> inTransition;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.FirePortOut"
+>PetriNets.Interfaces.FirePortOut</A> outTransition;
+equation
+  <I>// Set new state for next iteration</I>
+  state = pre(newState);
+  newState = inTransition.set or state and not outTransition.fire;
+  <I></I>
+  <I>// Report state to input and output transitions</I>
+  inTransition.state = state;
+  outTransition.state = state;
+end Place11;
+</PRE>
+<HR>
+<H2><IMG SRC="PetriNets.Place21I.gif" ALT="PetriNets.Place21" ALIGN=RIGHT BORDER=1 WIDTH=80  HEIGHT=80 >
+<A NAME="PetriNets.Place21"></A><A HREF="PetriNets.html#PetriNets"
+>PetriNets</A>.Place21</H2>
+<B>Place with two input and one output transition</B><p>
+<IMG SRC="PetriNets.Place21D.gif" ALT="PetriNets.Place21">
+<H3>Parameters</H3><P>
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2>
+<TR><TH>Name</TH><TH>Default</TH><TH>Description</TH></TR>
+<TR><TD>initialState</TD><TD>false</TD><TD>Initial value of state</TD></TR>
+</TABLE>
+<H3>Modelica definition</H3>
+<PRE>
+model Place21 &quot;Place with two input and one output transition&quot;
+  parameter Boolean initialState=false &quot;Initial value of state&quot;;
+  Boolean state(final start=initialState) &quot;State of place&quot;;
+protected
+  Boolean newState(final start=initialState);
+public
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.FirePortOut"
+>PetriNets.Interfaces.FirePortOut</A> outTransition;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.SetPortIn"
+>PetriNets.Interfaces.SetPortIn</A> inTransition1;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.SetPortIn"
+>PetriNets.Interfaces.SetPortIn</A> inTransition2;
+equation
+  <I>// Set new state for next iteration</I>
+  state = pre(newState);
+  newState = inTransition1.set or inTransition2.set or state and not
+    outTransition.fire;
+  <I></I>
+  <I>// Report state to input and output transitions</I>
+  inTransition1.state = state;
+  inTransition2.state = inTransition1.state or inTransition1.set;
+  outTransition.state = state;
+end Place21;
+</PRE>
+<HR>
+<H2><IMG SRC="PetriNets.Place12I.gif" ALT="PetriNets.Place12" ALIGN=RIGHT BORDER=1 WIDTH=80  HEIGHT=80 >
+<A NAME="PetriNets.Place12"></A><A HREF="PetriNets.html#PetriNets"
+>PetriNets</A>.Place12</H2>
+<B>Place with one input and two output transitions</B><p>
+<IMG SRC="PetriNets.Place12D.gif" ALT="PetriNets.Place12">
+<H3>Parameters</H3><P>
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2>
+<TR><TH>Name</TH><TH>Default</TH><TH>Description</TH></TR>
+<TR><TD>initialState</TD><TD>false</TD><TD>Initial value of state</TD></TR>
+</TABLE>
+<H3>Modelica definition</H3>
+<PRE>
+model Place12 &quot;Place with one input and two output transitions&quot;
+  parameter Boolean initialState=false &quot;Initial value of state&quot;;
+  Boolean state(final start=initialState) &quot;State of place&quot;;
+protected
+  Boolean newState(final start=initialState);
+public
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.SetPortIn"
+>PetriNets.Interfaces.SetPortIn</A> inTransition;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.FirePortOut"
+>PetriNets.Interfaces.FirePortOut</A> outTransition1;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.FirePortOut"
+>PetriNets.Interfaces.FirePortOut</A> outTransition2;
+equation
+  <I>// Set new state for next iteration</I>
+  state = pre(newState);
+  newState = inTransition.set or state and not (outTransition1.fire or
+    outTransition2.fire);
+  <I></I>
+  <I>// Report state to input and output transitions</I>
+  inTransition.state = state;
+  outTransition1.state = state;
+  outTransition2.state = outTransition1.state and not outTransition1.fire;
+end Place12;
+</PRE>
+<HR>
+<H2><IMG SRC="PetriNets.Place22I.gif" ALT="PetriNets.Place22" ALIGN=RIGHT BORDER=1 WIDTH=80  HEIGHT=80 >
+<A NAME="PetriNets.Place22"></A><A HREF="PetriNets.html#PetriNets"
+>PetriNets</A>.Place22</H2>
+<B>Place with two input and two output transitions</B><p>
+<IMG SRC="PetriNets.Place22D.gif" ALT="PetriNets.Place22">
+<H3>Parameters</H3><P>
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2>
+<TR><TH>Name</TH><TH>Default</TH><TH>Description</TH></TR>
+<TR><TD>initialState</TD><TD>false</TD><TD>Initial value of state</TD></TR>
+</TABLE>
+<H3>Modelica definition</H3>
+<PRE>
+model Place22 &quot;Place with two input and two output transitions&quot;
+  parameter Boolean initialState=false &quot;Initial value of state&quot;;
+  Boolean state(final start=initialState) &quot;State of place&quot;;
+protected
+  Boolean newState(final start=initialState);
+public
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.FirePortOut"
+>PetriNets.Interfaces.FirePortOut</A> outTransition1;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.FirePortOut"
+>PetriNets.Interfaces.FirePortOut</A> outTransition2;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.SetPortIn"
+>PetriNets.Interfaces.SetPortIn</A> inTransition1;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.SetPortIn"
+>PetriNets.Interfaces.SetPortIn</A> inTransition2;
+equation
+  <I>// Set new state for next iteration</I>
+  state = pre(newState);
+  newState = inTransition1.set or inTransition2.set or state and not (
+    outTransition1.fire or outTransition2.fire);
+  <I></I>
+  <I>// Report state to input and output transitions</I>
+  inTransition1.state = state;
+  inTransition2.state = inTransition1.state or inTransition1.set;
+  outTransition1.state = state;
+  outTransition2.state = outTransition1.state and not outTransition1.fire;
+end Place22;
+</PRE>
+<HR>
+<H2><IMG SRC="PetriNets.TransitionI.gif" ALT="PetriNets.Transition" ALIGN=RIGHT BORDER=1 WIDTH=80  HEIGHT=80 >
+<A NAME="PetriNets.Transition"></A><A HREF="PetriNets.html#PetriNets"
+>PetriNets</A>.Transition</H2>
+<B>Transition with one input and one output connection</B><p>
+<IMG SRC="PetriNets.TransitionD.gif" ALT="PetriNets.Transition">
+<H3>Parameters</H3><P>
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2>
+<TR><TH>Name</TH><TH>Default</TH><TH>Description</TH></TR>
+<TR><TD>condLabel</TD><TD>&quot; &quot;</TD><TD>Condition as string (e.g. &quot;x &gt; 0&quot;)</TD></TR>
+</TABLE>
+<H3>Modelica definition</H3>
+<PRE>
+model Transition
+  &quot;Transition with one input and one output connection&quot;
+  parameter String condLabel=&quot; &quot;
+    &quot;Condition as string (e.g. \&quot;x &gt; 0\&quot;)&quot;;
+  Boolean condition;
+  Boolean fire;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.FirePortIn"
+>PetriNets.Interfaces.FirePortIn</A> inTransition;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.SetPortOut"
+>PetriNets.Interfaces.SetPortOut</A> outTransition;
+  <A HREF="/library/Modelica/docu/Modelica_Blocks_Interfaces.html#Modelica.Blocks.Interfaces.BooleanInPort"
+>Modelica.Blocks.Interfaces.BooleanInPort</A> conditionPort(final n=1);
+equation
+  condition = conditionPort.signal[1];
+  fire = condition and inTransition.state and not outTransition.state;
+  inTransition.fire = fire;
+  outTransition.set = fire;
+end Transition;
+</PRE>
+<HR>
+<H2><IMG SRC="PetriNets.ParallelI.gif" ALT="PetriNets.Parallel" ALIGN=RIGHT BORDER=1 WIDTH=80  HEIGHT=80 >
+<A NAME="PetriNets.Parallel"></A><A HREF="PetriNets.html#PetriNets"
+>PetriNets</A>.Parallel</H2>
+<B>Transition with one input and two output connections</B><p>
+<IMG SRC="PetriNets.ParallelD.gif" ALT="PetriNets.Parallel">
+<H3>Parameters</H3><P>
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2>
+<TR><TH>Name</TH><TH>Default</TH><TH>Description</TH></TR>
+<TR><TD>condLabel</TD><TD>&quot; &quot;</TD><TD>Condition as string (e.g. &quot;x &gt; 0&quot;)</TD></TR>
+</TABLE>
+<H3>Modelica definition</H3>
+<PRE>
+model Parallel &quot;Transition with one input and two output connections&quot;
+
+  parameter String condLabel=&quot; &quot;
+    &quot;Condition as string (e.g. \&quot;x &gt; 0\&quot;)&quot;;
+  Boolean fire;
+  Boolean condition;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.FirePortIn"
+>PetriNets.Interfaces.FirePortIn</A> inTransition;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.SetPortOut"
+>PetriNets.Interfaces.SetPortOut</A> outTransition1;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.SetPortOut"
+>PetriNets.Interfaces.SetPortOut</A> outTransition2;
+  <A HREF="/library/Modelica/docu/Modelica_Blocks_Interfaces.html#Modelica.Blocks.Interfaces.BooleanInPort"
+>Modelica.Blocks.Interfaces.BooleanInPort</A> conditionPort(final n=1);
+equation
+  condition = conditionPort.signal[1];
+  fire = condition and inTransition.state and not (outTransition1.state or
+    outTransition2.state);
+  inTransition.fire = fire;
+  outTransition1.set = fire;
+  outTransition2.set = fire;
+end Parallel;
+</PRE>
+<HR>
+<H2><IMG SRC="PetriNets.SynchronizeI.gif" ALT="PetriNets.Synchronize" ALIGN=RIGHT BORDER=1 WIDTH=80  HEIGHT=80 >
+<A NAME="PetriNets.Synchronize"></A><A HREF="PetriNets.html#PetriNets"
+>PetriNets</A>.Synchronize</H2>
+<B>Transition with two input and one output connections</B><p>
+<IMG SRC="PetriNets.SynchronizeD.gif" ALT="PetriNets.Synchronize">
+<H3>Parameters</H3><P>
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2>
+<TR><TH>Name</TH><TH>Default</TH><TH>Description</TH></TR>
+<TR><TD>condLabel</TD><TD>&quot; &quot;</TD><TD>Condition as string (e.g. &quot;x &gt; 0&quot;)</TD></TR>
+</TABLE>
+<H3>Modelica definition</H3>
+<PRE>
+model Synchronize
+  &quot;Transition with two input and one output connections&quot;
+  parameter String condLabel=&quot; &quot;
+    &quot;Condition as string (e.g. \&quot;x &gt; 0\&quot;)&quot;;
+  Boolean condition;
+  Boolean fire;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.FirePortIn"
+>PetriNets.Interfaces.FirePortIn</A> inTransition1;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.FirePortIn"
+>PetriNets.Interfaces.FirePortIn</A> inTransition2;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.SetPortOut"
+>PetriNets.Interfaces.SetPortOut</A> outTransition;
+  <A HREF="/library/Modelica/docu/Modelica_Blocks_Interfaces.html#Modelica.Blocks.Interfaces.BooleanInPort"
+>Modelica.Blocks.Interfaces.BooleanInPort</A> conditionPort(final n=1);
+equation
+  condition = conditionPort.signal[1];
+  fire = condition and inTransition1.state and inTransition2.state and not
+    outTransition.state;
+  inTransition1.fire = fire;
+  inTransition2.fire = fire;
+  outTransition.set = fire;
+end Synchronize;
+</PRE>
+<HR>
+<address>HTML-documentation generated by <a href="http://www.dynasim.se/">Dymola</a> Tue Apr 30 22:43:02 2002
+.
+</address></BODY>
+</HTML>

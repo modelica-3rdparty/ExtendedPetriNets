@@ -1,0 +1,271 @@
+<HTML>
+<HEAD><META name="HTML-Generator" content="Dymola"><TITLE>PetriNets</TITLE></HEAD>
+<BODY><P>
+<H2><A NAME="PetriNets.ExamplesExtendedPetriNets"></A><A HREF="PetriNets.html#PetriNets"
+>PetriNets</A>.ExamplesExtendedPetriNets</H2>
+<A HREF="PetriNets_ExamplesExtendedPetriNets.html#PetriNets.ExamplesExtendedPetriNets.TestDelayDeterministic"
+><IMG SRC="PetriNets.ExamplesExtendedPetriNets.TestDelayDeterministicI.gif" ALT="PetriNets.ExamplesExtendedPetriNets.TestDelayDeterministic" WIDTH=80  HEIGHT=80 ></A>
+<A HREF="PetriNets_ExamplesExtendedPetriNets.html#PetriNets.ExamplesExtendedPetriNets.TestCapacity"
+><IMG SRC="PetriNets.ExamplesExtendedPetriNets.TestCapacityI.gif" ALT="PetriNets.ExamplesExtendedPetriNets.TestCapacity" WIDTH=80  HEIGHT=80 ></A>
+<A HREF="PetriNets_ExamplesExtendedPetriNets.html#PetriNets.ExamplesExtendedPetriNets.MM1_Queuing_system"
+><IMG SRC="PetriNets.ExamplesExtendedPetriNets.MM1_Queuing_systemI.gif" ALT="PetriNets.ExamplesExtendedPetriNets.MM1_Queuing_system" WIDTH=80  HEIGHT=80 ></A>
+<A HREF="PetriNets_ExamplesExtendedPetriNets.html#PetriNets.ExamplesExtendedPetriNets.TestDelayPolicy"
+><IMG SRC="PetriNets.ExamplesExtendedPetriNets.TestDelayPolicyI.gif" ALT="PetriNets.ExamplesExtendedPetriNets.TestDelayPolicy" WIDTH=80  HEIGHT=80 ></A>
+<A HREF="PetriNets_ExamplesExtendedPetriNets.html#PetriNets.ExamplesExtendedPetriNets.FunctionalNonfunctional"
+><IMG SRC="PetriNets.ExamplesExtendedPetriNets.FunctionalNonfunctionalI.gif" ALT="PetriNets.ExamplesExtendedPetriNets.FunctionalNonfunctional" WIDTH=80  HEIGHT=80 ></A>
+<A HREF="PetriNets_ExamplesExtendedPetriNets.html#PetriNets.ExamplesExtendedPetriNets.TwoSerial"
+><IMG SRC="PetriNets.ExamplesExtendedPetriNets.TwoSerialI.gif" ALT="PetriNets.ExamplesExtendedPetriNets.TwoSerial" WIDTH=80  HEIGHT=80 ></A>
+<A HREF="PetriNets_ExamplesExtendedPetriNets.html#PetriNets.ExamplesExtendedPetriNets.TwoOutOfThree"
+><IMG SRC="PetriNets.ExamplesExtendedPetriNets.TwoOutOfThreeI.gif" ALT="PetriNets.ExamplesExtendedPetriNets.TwoOutOfThree" WIDTH=80  HEIGHT=80 ></A>
+<P><P>
+<HR>
+<H2><IMG SRC="PetriNets.ExamplesExtendedPetriNets.TestDelayDeterministicI.gif" ALT="PetriNets.ExamplesExtendedPetriNets.TestDelayDeterministic" ALIGN=RIGHT BORDER=1 WIDTH=80  HEIGHT=80 >
+<A NAME="PetriNets.ExamplesExtendedPetriNets.TestDelayDeterministic"></A><A HREF="PetriNets_ExamplesExtendedPetriNets.html#PetriNets.ExamplesExtendedPetriNets"
+>PetriNets.ExamplesExtendedPetriNets</A>.TestDelayDeterministic</H2>
+<IMG SRC="PetriNets.ExamplesExtendedPetriNets.TestDelayDeterministicD.gif" ALT="PetriNets.ExamplesExtendedPetriNets.TestDelayDeterministic">
+<H3>Modelica definition</H3>
+<PRE>
+model TestDelayDeterministic
+  <A HREF="PetriNets.html#PetriNets.Place01"
+>Place01</A> P1(initialState=true);
+  <A HREF="PetriNets.html#PetriNets.Place10"
+>Place10</A> P3;
+  <A HREF="PetriNets.html#PetriNets.Transition"
+>Transition</A> T1;
+  <A HREF="PetriNets.html#PetriNets.Place11"
+>Place11</A> P2;
+  <A HREF="PetriNets_Extensions.html#PetriNets.Extensions.TDelay"
+>Extensions.TDelay</A> T2(delay=5);
+equation
+  connect(P1.outTransition, T1.inTransition);
+  connect(T1.outTransition, P2.inTransition);
+  connect(P2.outTransition, T2.inTransition);
+  connect(T2.outTransition, P3.inTransition);
+  T1.condition = time &gt; 5;
+end TestDelayDeterministic;
+</PRE>
+<HR>
+<H2><IMG SRC="PetriNets.ExamplesExtendedPetriNets.TestCapacityI.gif" ALT="PetriNets.ExamplesExtendedPetriNets.TestCapacity" ALIGN=RIGHT BORDER=1 WIDTH=80  HEIGHT=80 >
+<A NAME="PetriNets.ExamplesExtendedPetriNets.TestCapacity"></A><A HREF="PetriNets_ExamplesExtendedPetriNets.html#PetriNets.ExamplesExtendedPetriNets"
+>PetriNets.ExamplesExtendedPetriNets</A>.TestCapacity</H2>
+<IMG SRC="PetriNets.ExamplesExtendedPetriNets.TestCapacityD.gif" ALT="PetriNets.ExamplesExtendedPetriNets.TestCapacity">
+<H3>Modelica definition</H3>
+<PRE>
+model TestCapacity
+  <A HREF="PetriNets_Extensions.html#PetriNets.Extensions.TDelay"
+>Extensions.TDelay</A> TD1(delay=2.5);
+  <A HREF="PetriNets_Extensions.html#PetriNets.Extensions.TDelay"
+>Extensions.TDelay</A> TD2(delay=1);
+  <A HREF="PetriNets_Extensions.html#PetriNets.Extensions.P10Capacity"
+>Extensions.P10Capacity</A> P3(num_tokens_start=1, N=10);
+  <A HREF="PetriNets_Extensions.html#PetriNets.Extensions.P01Capacity"
+>Extensions.P01Capacity</A> P1(num_tokens_start=10, N=10);
+  <A HREF="PetriNets_Extensions.html#PetriNets.Extensions.P11Capacity"
+>Extensions.P11Capacity</A> P2(num_tokens_start=20, N=100);
+equation
+  connect(P1.outTransition, TD1.inTransition);
+  connect(TD1.outTransition, P2.inTransition);
+  connect(P2.outTransition, TD2.inTransition);
+  connect(TD2.outTransition, P3.inTransition);
+end TestCapacity;
+</PRE>
+<HR>
+<H2><IMG SRC="PetriNets.ExamplesExtendedPetriNets.MM1_Queuing_systemI.gif" ALT="PetriNets.ExamplesExtendedPetriNets.MM1_Queuing_system" ALIGN=RIGHT BORDER=1 WIDTH=80  HEIGHT=80 >
+<A NAME="PetriNets.ExamplesExtendedPetriNets.MM1_Queuing_system"></A><A HREF="PetriNets_ExamplesExtendedPetriNets.html#PetriNets.ExamplesExtendedPetriNets"
+>PetriNets.ExamplesExtendedPetriNets</A>.MM1_Queuing_system</H2>
+<IMG SRC="PetriNets.ExamplesExtendedPetriNets.MM1_Queuing_systemD.gif" ALT="PetriNets.ExamplesExtendedPetriNets.MM1_Queuing_system">
+<H3>Modelica definition</H3>
+<PRE>
+model MM1_Queuing_system
+  <A HREF="PetriNets_Extensions.html#PetriNets.Extensions.P10Capacity"
+>Extensions.P10Capacity</A> Sink(N=1000000);
+  <A HREF="PetriNets_Extensions.html#PetriNets.Extensions.P01Capacity"
+>Extensions.P01Capacity</A> Source(num_tokens_start=1000000, N=1000000);
+  <A HREF="PetriNets_Extensions.html#PetriNets.Extensions.P11Capacity"
+>Extensions.P11Capacity</A> Queue(N=1000);
+  <A HREF="PetriNets_Extensions.html#PetriNets.Extensions.TDelayExp"
+>Extensions.TDelayExp</A> Interarrival(seed=998611);
+  <A HREF="PetriNets_Extensions.html#PetriNets.Extensions.TNoCondition"
+>Extensions.TNoCondition</A> GoToService;
+  <A HREF="PetriNets_Extensions.html#PetriNets.Extensions.TDelayExp"
+>Extensions.TDelayExp</A> Service(mean=8, seed=4556);
+  <A HREF="PetriNets.html#PetriNets.Place11"
+>Place11</A> Desk;
+  <A HREF="PetriNets_Modules.html#PetriNets.Modules.EvalBlock"
+>Modules.EvalBlock</A> EvalBlock1;
+equation
+  connect(Source.outTransition, Interarrival.inTransition);
+  connect(Queue.outTransition, GoToService.inTransition);
+  connect(GoToService.outTransition, Desk.inTransition);
+  connect(Desk.outTransition, Service.inTransition);
+  connect(Interarrival.outTransition, Queue.inTransition);
+  connect(Service.outTransition, Sink.inTransition);
+  connect(Queue.Bchange, EvalBlock1.InChange);
+  connect(Queue.outTokens, EvalBlock1.InTokens);
+end MM1_Queuing_system;
+</PRE>
+<HR>
+<H2><IMG SRC="PetriNets.ExamplesExtendedPetriNets.TestDelayPolicyI.gif" ALT="PetriNets.ExamplesExtendedPetriNets.TestDelayPolicy" ALIGN=RIGHT BORDER=1 WIDTH=80  HEIGHT=80 >
+<A NAME="PetriNets.ExamplesExtendedPetriNets.TestDelayPolicy"></A><A HREF="PetriNets_ExamplesExtendedPetriNets.html#PetriNets.ExamplesExtendedPetriNets"
+>PetriNets.ExamplesExtendedPetriNets</A>.TestDelayPolicy</H2>
+<IMG SRC="PetriNets.ExamplesExtendedPetriNets.TestDelayPolicyD.gif" ALT="PetriNets.ExamplesExtendedPetriNets.TestDelayPolicy">
+<H3>Modelica definition</H3>
+<PRE>
+model TestDelayPolicy
+  <A HREF="PetriNets_Extensions.html#PetriNets.Extensions.TDelay"
+>Extensions.TDelay</A> T2(delay=5);
+  <A HREF="PetriNets.html#PetriNets.Place01"
+>Place01</A> P1(initialState=true);
+  <A HREF="PetriNets.html#PetriNets.Place10"
+>Place10</A> P3;
+  <A HREF="PetriNets.html#PetriNets.Place22"
+>Place22</A> P2;
+  <A HREF="PetriNets.html#PetriNets.Place11"
+>Place11</A> P4;
+  <A HREF="PetriNets.html#PetriNets.Transition"
+>Transition</A> T1;
+  <A HREF="PetriNets.html#PetriNets.Transition"
+>Transition</A> T3;
+  <A HREF="PetriNets.html#PetriNets.Transition"
+>Transition</A> T4;
+equation
+  connect(P2.outTransition2, T2.inTransition);
+  connect(T2.outTransition, P3.inTransition);
+  connect(P1.outTransition, T1.inTransition);
+  connect(T1.outTransition, P2.inTransition2);
+  connect(P4.inTransition, T3.outTransition);
+  connect(P2.outTransition1, T3.inTransition);
+  connect(P4.outTransition, T4.inTransition);
+  connect(T4.outTransition, P2.inTransition1);
+  T1.condition = time &gt; 5;
+  T3.condition = (time &gt; 7.5) and (time &lt; 8.0);
+  T4.condition = time &gt; 12.5;
+end TestDelayPolicy;
+</PRE>
+<HR>
+<H2><IMG SRC="PetriNets.ExamplesExtendedPetriNets.FunctionalNonfunctionalI.gif" ALT="PetriNets.ExamplesExtendedPetriNets.FunctionalNonfunctional" ALIGN=RIGHT BORDER=1 WIDTH=80  HEIGHT=80 >
+<A NAME="PetriNets.ExamplesExtendedPetriNets.FunctionalNonfunctional"></A><A HREF="PetriNets_ExamplesExtendedPetriNets.html#PetriNets.ExamplesExtendedPetriNets"
+>PetriNets.ExamplesExtendedPetriNets</A>.FunctionalNonfunctional</H2>
+<IMG SRC="PetriNets.ExamplesExtendedPetriNets.FunctionalNonfunctionalD.gif" ALT="PetriNets.ExamplesExtendedPetriNets.FunctionalNonfunctional">
+<H3>Modelica definition</H3>
+<PRE>
+model FunctionalNonfunctional
+  <A HREF="PetriNets_Extensions.html#PetriNets.Extensions.P11Capacity"
+>Extensions.P11Capacity</A> Functional(num_tokens_start=1, N=1);
+  <A HREF="PetriNets_Extensions.html#PetriNets.Extensions.TDelayExp"
+>Extensions.TDelayExp</A> DelayLifeExp(mean=49, seed=6544);
+  <A HREF="PetriNets.html#PetriNets.Place11"
+>Place11</A> Nonfunctional;
+  <A HREF="PetriNets_Extensions.html#PetriNets.Extensions.TDelayExp"
+>Extensions.TDelayExp</A> DelayRepairExp(mean=1, seed=984442);
+  <A HREF="PetriNets_Modules.html#PetriNets.Modules.EvalBlock"
+>Modules.EvalBlock</A> EvalBlock1;
+equation
+  connect(Functional.outTransition, DelayLifeExp.inTransition);
+  connect(DelayLifeExp.outTransition, Nonfunctional.inTransition);
+  connect(DelayRepairExp.outTransition, Functional.inTransition);
+  connect(Nonfunctional.outTransition, DelayRepairExp.inTransition);
+  connect(Functional.outTokens, EvalBlock1.InTokens);
+  connect(Functional.Bchange, EvalBlock1.InChange);
+end FunctionalNonfunctional;
+</PRE>
+<HR>
+<H2><IMG SRC="PetriNets.ExamplesExtendedPetriNets.TwoSerialI.gif" ALT="PetriNets.ExamplesExtendedPetriNets.TwoSerial" ALIGN=RIGHT BORDER=1 WIDTH=80  HEIGHT=80 >
+<A NAME="PetriNets.ExamplesExtendedPetriNets.TwoSerial"></A><A HREF="PetriNets_ExamplesExtendedPetriNets.html#PetriNets.ExamplesExtendedPetriNets"
+>PetriNets.ExamplesExtendedPetriNets</A>.TwoSerial</H2>
+<IMG SRC="PetriNets.ExamplesExtendedPetriNets.TwoSerialD.gif" ALT="PetriNets.ExamplesExtendedPetriNets.TwoSerial">
+<H3>Modelica definition</H3>
+<PRE>
+model TwoSerial
+  <A HREF="PetriNets_Extensions.html#PetriNets.Extensions.P11Capacity"
+>Extensions.P11Capacity</A> Functional(num_tokens_start=1, N=1);
+  <A HREF="PetriNets.html#PetriNets.Place11"
+>Place11</A> Nonfunctional;
+  <A HREF="/library/ModelicaAdditions/docu/ModelicaAdditions_Blocks_Logical.html#ModelicaAdditions.Blocks.Logical.AND"
+>ModelicaAdditions.Blocks.Logical.AND</A> AND1;
+  <A HREF="/library/ModelicaAdditions/docu/ModelicaAdditions_Blocks_Logical.html#ModelicaAdditions.Blocks.Logical.NOT"
+>ModelicaAdditions.Blocks.Logical.NOT</A> NOT1;
+  <A HREF="PetriNets_Modules.html#PetriNets.Modules.SingleComponent"
+>Modules.SingleComponent</A> C1;
+  <A HREF="PetriNets_Modules.html#PetriNets.Modules.SingleComponentAlt"
+>Modules.SingleComponentAlt</A> C2;
+  <A HREF="PetriNets.html#PetriNets.Transition"
+>Transition</A> restart;
+  <A HREF="PetriNets.html#PetriNets.Transition"
+>Transition</A> faillure;
+  <A HREF="PetriNets_Modules.html#PetriNets.Modules.EvalBlock"
+>Modules.EvalBlock</A> EvalBlock1;
+equation
+  connect(AND1.outPort, NOT1.inPort);
+  connect(Functional.outTransition, faillure.inTransition);
+  connect(faillure.outTransition, Nonfunctional.inTransition);
+  connect(restart.outTransition, Functional.inTransition);
+  connect(Nonfunctional.outTransition, restart.inTransition);
+  connect(NOT1.outPort, faillure.conditionPort);
+  connect(AND1.outPort, restart.conditionPort);
+  connect(C1.BFunctional, AND1.inPort1);
+  connect(C2.BFunctional, AND1.inPort2);
+  connect(Functional.outTokens, EvalBlock1.InTokens);
+  connect(Functional.Bchange, EvalBlock1.InChange);
+end TwoSerial;
+</PRE>
+<HR>
+<H2><IMG SRC="PetriNets.ExamplesExtendedPetriNets.TwoOutOfThreeI.gif" ALT="PetriNets.ExamplesExtendedPetriNets.TwoOutOfThree" ALIGN=RIGHT BORDER=1 WIDTH=80  HEIGHT=80 >
+<A NAME="PetriNets.ExamplesExtendedPetriNets.TwoOutOfThree"></A><A HREF="PetriNets_ExamplesExtendedPetriNets.html#PetriNets.ExamplesExtendedPetriNets"
+>PetriNets.ExamplesExtendedPetriNets</A>.TwoOutOfThree</H2>
+<IMG SRC="PetriNets.ExamplesExtendedPetriNets.TwoOutOfThreeD.gif" ALT="PetriNets.ExamplesExtendedPetriNets.TwoOutOfThree">
+<H3>Modelica definition</H3>
+<PRE>
+model TwoOutOfThree
+  <A HREF="PetriNets_Extensions.html#PetriNets.Extensions.P11Capacity"
+>Extensions.P11Capacity</A> Functional(num_tokens_start=1, N=1);
+  <A HREF="PetriNets.html#PetriNets.Place11"
+>Place11</A> Nonfunctional;
+  <A HREF="/library/ModelicaAdditions/docu/ModelicaAdditions_Blocks_Logical.html#ModelicaAdditions.Blocks.Logical.AND"
+>ModelicaAdditions.Blocks.Logical.AND</A> AND1;
+  <A HREF="/library/ModelicaAdditions/docu/ModelicaAdditions_Blocks_Logical.html#ModelicaAdditions.Blocks.Logical.NOT"
+>ModelicaAdditions.Blocks.Logical.NOT</A> NOT1;
+  <A HREF="PetriNets_Modules.html#PetriNets.Modules.SingleComponent"
+>Modules.SingleComponent</A> C1;
+  <A HREF="PetriNets_Modules.html#PetriNets.Modules.SingleComponentAlt"
+>Modules.SingleComponentAlt</A> C2;
+  <A HREF="PetriNets.html#PetriNets.Transition"
+>Transition</A> restart;
+  <A HREF="PetriNets.html#PetriNets.Transition"
+>Transition</A> faillure;
+  <A HREF="PetriNets_Modules.html#PetriNets.Modules.SingleComponentAlt1"
+>Modules.SingleComponentAlt1</A> C3;
+  <A HREF="/library/ModelicaAdditions/docu/ModelicaAdditions_Blocks_Logical.html#ModelicaAdditions.Blocks.Logical.AND"
+>ModelicaAdditions.Blocks.Logical.AND</A> AND2;
+  <A HREF="/library/ModelicaAdditions/docu/ModelicaAdditions_Blocks_Logical.html#ModelicaAdditions.Blocks.Logical.AND"
+>ModelicaAdditions.Blocks.Logical.AND</A> AND3;
+  <A HREF="PetriNets_Modules.html#PetriNets.Modules.OR3"
+>Modules.OR3</A> OR3_1;
+  <A HREF="PetriNets_Modules.html#PetriNets.Modules.EvalBlock"
+>Modules.EvalBlock</A> EvalBlock1;
+equation
+  connect(Functional.outTransition, faillure.inTransition);
+  connect(faillure.outTransition, Nonfunctional.inTransition);
+  connect(restart.outTransition, Functional.inTransition);
+  connect(Nonfunctional.outTransition, restart.inTransition);
+  connect(NOT1.outPort, faillure.conditionPort);
+  connect(C1.BFunctional, AND1.inPort1);
+  connect(AND1.inPort2, C2.BFunctional);
+  connect(C2.BFunctional, AND2.inPort1);
+  connect(C3.BFunctional, AND2.inPort2);
+  connect(C1.BFunctional, AND3.inPort1);
+  connect(C3.BFunctional, AND3.inPort2);
+  connect(AND1.outPort, OR3_1.inPort1);
+  connect(AND2.outPort, OR3_1.inPort2);
+  connect(AND3.outPort, OR3_1.inPort3);
+  connect(OR3_1.outPort, NOT1.inPort);
+  connect(OR3_1.outPort, restart.conditionPort);
+  connect(Functional.outTokens, EvalBlock1.InTokens);
+  connect(Functional.Bchange, EvalBlock1.InChange);
+end TwoOutOfThree;
+</PRE>
+<HR>
+<address>HTML-documentation generated by <a href="http://www.dynasim.se/">Dymola</a> Tue Apr 30 22:44:40 2002
+.
+</address></BODY>
+</HTML>

@@ -1,0 +1,829 @@
+<HTML>
+<HEAD><META name="HTML-Generator" content="Dymola"><TITLE>PetriNets</TITLE></HEAD>
+<BODY><P>
+<H2><A NAME="PetriNets.Extensions"></A><A HREF="PetriNets.html#PetriNets"
+>PetriNets</A>.Extensions</H2>
+<A HREF="PetriNets_Extensions.html#PetriNets.Extensions.TDelay"
+><IMG SRC="PetriNets.Extensions.TDelayI.gif" ALT="PetriNets.Extensions.TDelay" WIDTH=80  HEIGHT=80 ></A>
+<A HREF="PetriNets_Extensions.html#PetriNets.Extensions.TNoCondition"
+><IMG SRC="PetriNets.Extensions.TNoConditionI.gif" ALT="PetriNets.Extensions.TNoCondition" WIDTH=80  HEIGHT=80 ></A>
+<A HREF="PetriNets_Extensions.html#PetriNets.Extensions.P10Capacity"
+><IMG SRC="PetriNets.Extensions.P10CapacityI.gif" ALT="PetriNets.Extensions.P10Capacity" WIDTH=80  HEIGHT=80 ></A>
+<A HREF="PetriNets_Extensions.html#PetriNets.Extensions.P01Capacity"
+><IMG SRC="PetriNets.Extensions.P01CapacityI.gif" ALT="PetriNets.Extensions.P01Capacity" WIDTH=80  HEIGHT=80 ></A>
+<A HREF="PetriNets_Extensions.html#PetriNets.Extensions.P11Capacity"
+><IMG SRC="PetriNets.Extensions.P11CapacityI.gif" ALT="PetriNets.Extensions.P11Capacity" WIDTH=80  HEIGHT=80 ></A>
+<A HREF="PetriNets_Extensions.html#PetriNets.Extensions.TDelayExp"
+><IMG SRC="PetriNets.Extensions.TDelayExpI.gif" ALT="PetriNets.Extensions.TDelayExp" WIDTH=80  HEIGHT=80 ></A>
+<A HREF="PetriNets_Extensions.html#PetriNets.Extensions.Place11B"
+><IMG SRC="PetriNets.Extensions.Place11BI.gif" ALT="PetriNets.Extensions.Place11B" WIDTH=80  HEIGHT=80 ></A>
+<A HREF="PetriNets_Extensions.html#PetriNets.Extensions.SynchronizeNoCondition"
+><IMG SRC="PetriNets.Extensions.SynchronizeNoConditionI.gif" ALT="PetriNets.Extensions.SynchronizeNoCondition" WIDTH=80  HEIGHT=80 ></A>
+<A HREF="PetriNets_Extensions.html#PetriNets.Extensions.ParallelNoCondition"
+><IMG SRC="PetriNets.Extensions.ParallelNoConditionI.gif" ALT="PetriNets.Extensions.ParallelNoCondition" WIDTH=80  HEIGHT=80 ></A>
+<A HREF="PetriNets_Extensions.html#PetriNets.Extensions.TDelayWeibull"
+><IMG SRC="PetriNets.Extensions.TDelayWeibullI.gif" ALT="PetriNets.Extensions.TDelayWeibull" WIDTH=80  HEIGHT=80 ></A>
+<A HREF="PetriNets_Extensions.html#PetriNets.Extensions.TDelayExpBIRNG"
+><IMG SRC="PetriNets.Extensions.TDelayExpBIRNGI.gif" ALT="PetriNets.Extensions.TDelayExpBIRNG" WIDTH=80  HEIGHT=80 ></A>
+<A HREF="PetriNets_Extensions.html#PetriNets.Extensions.TDelayNormalBIRNG"
+><IMG SRC="PetriNets.Extensions.TDelayNormalBIRNGI.gif" ALT="PetriNets.Extensions.TDelayNormalBIRNG" WIDTH=80  HEIGHT=80 ></A>
+<A HREF="PetriNets_Extensions.html#PetriNets.Extensions.TDelayUniformBIRNG"
+><IMG SRC="PetriNets.Extensions.TDelayUniformBIRNGI.gif" ALT="PetriNets.Extensions.TDelayUniformBIRNG" WIDTH=80  HEIGHT=80 ></A>
+<A HREF="PetriNets_Extensions.html#PetriNets.Extensions.TDelayWeibullBIRNG"
+><IMG SRC="PetriNets.Extensions.TDelayWeibullBIRNGI.gif" ALT="PetriNets.Extensions.TDelayWeibullBIRNG" WIDTH=80  HEIGHT=80 ></A>
+<A HREF="PetriNets_Extensions.html#PetriNets.Extensions.TDelayUniform"
+><IMG SRC="PetriNets.Extensions.TDelayUniformI.gif" ALT="PetriNets.Extensions.TDelayUniform" WIDTH=80  HEIGHT=80 ></A>
+<A HREF="PetriNets_Extensions.html#PetriNets.Extensions.TDelayNormal"
+><IMG SRC="PetriNets.Extensions.TDelayNormalI.gif" ALT="PetriNets.Extensions.TDelayNormal" WIDTH=80  HEIGHT=80 ></A>
+<P><P>
+<H3>Information</H3>
+<PRE>See Knuth D.E. (1981). The Art of Computer Programming,
+Seminumerical Algorithms, vol. 2, 2nd ed., Addison-Wesley, U.S.A.
+ as a reference to random number generation.
+</PRE><P>
+<HR>
+<H2><IMG SRC="PetriNets.Extensions.TDelayExpI.gif" ALT="PetriNets.Extensions.TDelayExp" ALIGN=RIGHT BORDER=1 WIDTH=80  HEIGHT=80 >
+<A NAME="PetriNets.Extensions.TDelayExp"></A><A HREF="PetriNets_Extensions.html#PetriNets.Extensions"
+>PetriNets.Extensions</A>.TDelayExp</H2>
+<B>Transition with one input and one output connection</B><p>
+<IMG SRC="PetriNets.Extensions.TDelayExpD.gif" ALT="PetriNets.Extensions.TDelayExp">
+<H3>Parameters</H3><P>
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2>
+<TR><TH>Name</TH><TH>Default</TH><TH>Description</TH></TR>
+<TR><TD>mean</TD><TD>10</TD><TD>Exponential mean</TD></TR>
+<TR><TD>seed</TD><TD>1973272912</TD><TD>&nbsp;</TD></TR>
+</TABLE>
+<H3>Modelica definition</H3>
+<PRE>
+model TDelayExp &quot;Transition with one input and one output connection&quot;
+
+  parameter Real mean=10 &quot;Exponential mean&quot;;
+  parameter Integer seed=1973272912;
+  <I></I>
+  Boolean activated;
+  Boolean delay_passed;
+  Boolean fire;
+  <I></I>
+  Real last_activation_time;
+  Real delay;
+  <I></I>
+  Integer Xi(start=seed);
+  Integer Xiplus;
+  Integer m=2147483647;
+  <I>//(2^31) - 1</I>
+  Integer a=7^5;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.FirePortIn"
+>PetriNets.Interfaces.FirePortIn</A> inTransition;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.SetPortOut"
+>PetriNets.Interfaces.SetPortOut</A> outTransition;
+equation
+  <I>//activation of transition</I>
+  activated = inTransition.state;
+  <I></I>
+  <I>//activated and delay passed</I>
+  delay_passed = activated and ((time - delay) &gt; last_activation_time);
+  <I></I>
+  <I>//fire command</I>
+  fire = activated and delay_passed and not outTransition.state;
+  <I></I>
+  <I>//propagate firing to in and output places</I>
+  inTransition.fire = fire;
+  outTransition.set = fire;
+  <I></I>
+  <I>//set activation time</I>
+algorithm
+  when activated then
+    last_activation_time := time;
+    <I>//Multiplicative Linear Congruential Method </I>
+    Xiplus := mod(a*Xi, m);
+    delay := -mean*ln(Xiplus/m);
+    Xi := Xiplus;
+    <I></I>
+
+      <I>//The built in function only runs for a certain number of samples and then </I>
+    <I>//breaks down</I>
+    <I>//delay := -mean*ln(RandomUniform(time));</I>
+  end when;
+end TDelayExp;
+</PRE>
+<HR>
+<H2><IMG SRC="PetriNets.Extensions.TDelayNormalI.gif" ALT="PetriNets.Extensions.TDelayNormal" ALIGN=RIGHT BORDER=1 WIDTH=80  HEIGHT=80 >
+<A NAME="PetriNets.Extensions.TDelayNormal"></A><A HREF="PetriNets_Extensions.html#PetriNets.Extensions"
+>PetriNets.Extensions</A>.TDelayNormal</H2>
+<B>Transition with one input and one output connection</B><p>
+<IMG SRC="PetriNets.Extensions.TDelayNormalD.gif" ALT="PetriNets.Extensions.TDelayNormal">
+<H3>Parameters</H3><P>
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2>
+<TR><TH>Name</TH><TH>Default</TH><TH>Description</TH></TR>
+<TR><TD>mean</TD><TD>10</TD><TD>Mean of normal distribution</TD></TR>
+<TR><TD>standardDev</TD><TD>1</TD><TD>Standard deviation of normal distribution</TD></TR>
+<TR><TD>seed1</TD><TD>1973272912</TD><TD>&nbsp;</TD></TR>
+<TR><TD>seed2</TD><TD>28864</TD><TD>&nbsp;</TD></TR>
+</TABLE>
+<H3>Modelica definition</H3>
+<PRE>
+model TDelayNormal
+  &quot;Transition with one input and one output connection&quot;
+  parameter Real mean=10 &quot;Mean of normal distribution&quot;;
+  parameter Real standardDev=1
+    &quot;Standard deviation of normal distribution&quot;;
+  parameter Integer seed1=1973272912;
+  parameter Integer seed2=28864;
+  <I></I>
+  Boolean activated;
+  Boolean delay_passed;
+  Boolean fire;
+  <I></I>
+  Real last_activation_time;
+  Real delay;
+  <I></I>
+  Integer X1(start=seed1);
+  Integer X1plus;
+  Integer X2(start=seed2);
+  Integer X2plus;
+  Real YnormalStandard;
+  Real Ynormal;
+  Integer m=2147483647;
+  <I>//(2^31) - 1</I>
+  Integer a=7^5;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.FirePortIn"
+>PetriNets.Interfaces.FirePortIn</A> inTransition;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.SetPortOut"
+>PetriNets.Interfaces.SetPortOut</A> outTransition;
+equation
+  <I>//activation of transition</I>
+  activated = inTransition.state;
+  <I></I>
+  <I>//activated and delay passed</I>
+  delay_passed = activated and ((time - delay) &gt; last_activation_time);
+  <I></I>
+  <I>//fire command</I>
+  fire = activated and delay_passed and not outTransition.state;
+  <I></I>
+  <I>//propagate firing to in and output places</I>
+  inTransition.fire = fire;
+  outTransition.set = fire;
+  <I></I>
+  <I>//set activation time</I>
+algorithm
+  when activated then
+    last_activation_time := time;
+    <I>//Multiplicative Linear Congruential Method </I>
+    X1plus := mod(a*X1, m);
+    X2plus := mod(a*X2, m);
+    <I>//Box-Mueller transformation method for normal distribution</I>
+    YnormalStandard := sqrt(-2*ln(X1plus/m))*cos(2*Modelica.Constants.pi*(
+      X2plus/m));
+    Ynormal := mean + standardDev*YnormalStandard;
+    delay := Ynormal;
+    X1 := X1plus;
+    X2 := X2plus;
+  end when;
+end TDelayNormal;
+</PRE>
+<HR>
+<H2><IMG SRC="PetriNets.Extensions.TDelayExpBIRNGI.gif" ALT="PetriNets.Extensions.TDelayExpBIRNG" ALIGN=RIGHT BORDER=1 WIDTH=80  HEIGHT=80 >
+<A NAME="PetriNets.Extensions.TDelayExpBIRNG"></A><A HREF="PetriNets_Extensions.html#PetriNets.Extensions"
+>PetriNets.Extensions</A>.TDelayExpBIRNG</H2>
+<B>Transition with one input and one output connection</B><p>
+<IMG SRC="PetriNets.Extensions.TDelayExpBIRNGD.gif" ALT="PetriNets.Extensions.TDelayExpBIRNG">
+<H3>Parameters</H3><P>
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2>
+<TR><TH>Name</TH><TH>Default</TH><TH>Description</TH></TR>
+<TR><TD>mean</TD><TD>10</TD><TD>Exponential mean</TD></TR>
+</TABLE>
+<H3>Modelica definition</H3>
+<PRE>
+model TDelayExpBIRNG
+  &quot;Transition with one input and one output connection&quot;
+  <I></I>
+  parameter Real mean=10 &quot;Exponential mean&quot;;
+  <I></I>
+  Boolean activated;
+  Boolean delay_passed;
+  Boolean fire;
+  <I></I>
+  Real last_activation_time;
+  Real delay;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.FirePortIn"
+>PetriNets.Interfaces.FirePortIn</A> inTransition;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.SetPortOut"
+>PetriNets.Interfaces.SetPortOut</A> outTransition;
+equation
+  <I>//activation of transition</I>
+  activated = inTransition.state;
+  <I></I>
+  <I>//activated and delay passed</I>
+  delay_passed = activated and ((time - delay) &gt; last_activation_time);
+  <I></I>
+  <I>//fire command</I>
+  fire = activated and delay_passed and not outTransition.state;
+  <I></I>
+  <I>//propagate firing to in and output places</I>
+  inTransition.fire = fire;
+  outTransition.set = fire;
+  <I></I>
+  <I>//set activation time</I>
+algorithm
+  when activated then
+    last_activation_time := time;
+    <I>//The built in function only runs for a certain number (quite large)</I>
+    <I>// of samples and then miraculously creates extremly large values!</I>
+    delay := -mean*ln(RandomUniform(time));
+  end when;
+end TDelayExpBIRNG;
+</PRE>
+<HR>
+<H2><IMG SRC="PetriNets.Extensions.TDelayNormalBIRNGI.gif" ALT="PetriNets.Extensions.TDelayNormalBIRNG" ALIGN=RIGHT BORDER=1 WIDTH=80  HEIGHT=80 >
+<A NAME="PetriNets.Extensions.TDelayNormalBIRNG"></A><A HREF="PetriNets_Extensions.html#PetriNets.Extensions"
+>PetriNets.Extensions</A>.TDelayNormalBIRNG</H2>
+<B>Transition with one input and one output connection</B><p>
+<IMG SRC="PetriNets.Extensions.TDelayNormalBIRNGD.gif" ALT="PetriNets.Extensions.TDelayNormalBIRNG">
+<H3>Parameters</H3><P>
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2>
+<TR><TH>Name</TH><TH>Default</TH><TH>Description</TH></TR>
+<TR><TD>center</TD><TD>5.0</TD><TD>Normal around center</TD></TR>
+<TR><TD>standardDev</TD><TD>1.0</TD><TD>Standard deviation of the normal distribution</TD></TR>
+</TABLE>
+<H3>Modelica definition</H3>
+<PRE>
+model TDelayNormalBIRNG
+  &quot;Transition with one input and one output connection&quot;
+  parameter Real center=5.0 &quot;Normal around center&quot;;
+  parameter Real standardDev=1.0
+    &quot;Standard deviation of the normal distribution&quot;;
+  <I></I>
+  Boolean activated;
+  Boolean delay_passed;
+  Boolean fire;
+  <I></I>
+  Real last_activation_time;
+  Real delay;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.FirePortIn"
+>PetriNets.Interfaces.FirePortIn</A> inTransition;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.SetPortOut"
+>PetriNets.Interfaces.SetPortOut</A> outTransition;
+equation
+  <I>//activation of transition</I>
+  activated = inTransition.state;
+  <I></I>
+  <I>//set activation time</I>
+  when activated then
+    last_activation_time = time;
+    delay = center + standardDev*(RandomNormal(time));
+  end when;
+  <I></I>
+  <I>//activated and delay passed</I>
+  delay_passed = activated and ((time - delay) &gt; last_activation_time);
+  <I></I>
+  <I>//fire command</I>
+  fire = activated and delay_passed and not outTransition.state;
+  <I></I>
+  <I>//propagate firing to in and output places</I>
+  inTransition.fire = fire;
+  outTransition.set = fire;
+end TDelayNormalBIRNG;
+</PRE>
+<HR>
+<H2><IMG SRC="PetriNets.Extensions.TDelayI.gif" ALT="PetriNets.Extensions.TDelay" ALIGN=RIGHT BORDER=1 WIDTH=80  HEIGHT=80 >
+<A NAME="PetriNets.Extensions.TDelay"></A><A HREF="PetriNets_Extensions.html#PetriNets.Extensions"
+>PetriNets.Extensions</A>.TDelay</H2>
+<B>Transition with one input and one output connection</B><p>
+<IMG SRC="PetriNets.Extensions.TDelayD.gif" ALT="PetriNets.Extensions.TDelay">
+<H3>Parameters</H3><P>
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2>
+<TR><TH>Name</TH><TH>Default</TH><TH>Description</TH></TR>
+<TR><TD>delay</TD><TD>5</TD><TD>&nbsp;</TD></TR>
+</TABLE>
+<H3>Modelica definition</H3>
+<PRE>
+model TDelay &quot;Transition with one input and one output connection&quot;
+  parameter Real delay=5;
+  <I></I>
+  Boolean activated;
+  Boolean delay_passed;
+  Boolean fire;
+  <I></I>
+  Real last_activation_time;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.FirePortIn"
+>PetriNets.Interfaces.FirePortIn</A> inTransition;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.SetPortOut"
+>PetriNets.Interfaces.SetPortOut</A> outTransition;
+equation
+  <I></I>
+  <I>//activation of transition</I>
+  activated = inTransition.state;
+  <I></I>
+  <I>//set activation time</I>
+  when activated then
+    last_activation_time = time;
+  end when;
+  <I></I>
+  <I>//activated and delay passed</I>
+  delay_passed = activated and ((time - delay) &gt; last_activation_time);
+  <I></I>
+  <I>//fire command</I>
+  fire = activated and delay_passed and not outTransition.state;
+  <I></I>
+  <I>//propagate firing to in and output places</I>
+  inTransition.fire = fire;
+  outTransition.set = fire;
+  <I></I>
+end TDelay;
+</PRE>
+<HR>
+<H2><IMG SRC="PetriNets.Extensions.P10CapacityI.gif" ALT="PetriNets.Extensions.P10Capacity" ALIGN=RIGHT BORDER=1 WIDTH=80  HEIGHT=80 >
+<A NAME="PetriNets.Extensions.P10Capacity"></A><A HREF="PetriNets_Extensions.html#PetriNets.Extensions"
+>PetriNets.Extensions</A>.P10Capacity</H2>
+<B>Place with one input and one output transition</B><p>
+<IMG SRC="PetriNets.Extensions.P10CapacityD.gif" ALT="PetriNets.Extensions.P10Capacity">
+<H3>Parameters</H3><P>
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2>
+<TR><TH>Name</TH><TH>Default</TH><TH>Description</TH></TR>
+<TR><TD>num_tokens_start</TD><TD>0</TD><TD>Initial number of tokens</TD></TR>
+<TR><TD>N</TD><TD>1</TD><TD>Capacity limit for tokens</TD></TR>
+</TABLE>
+<H3>Modelica definition</H3>
+<PRE>
+model P10Capacity &quot;Place with one input and one output transition&quot;
+  parameter Integer num_tokens_start=0 &quot;Initial number of tokens&quot;;
+  parameter Integer N=1 &quot;Capacity limit for tokens&quot;;
+  <I></I>
+  Integer num_tokens(start=num_tokens_start)
+    &quot;number of tokens present on the place&quot;;
+  Boolean full;
+  <I></I>
+  Integer new_num_tokens(start=num_tokens_start);
+  Boolean tokenin;
+public
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.SetPortIn"
+>PetriNets.Interfaces.SetPortIn</A> inTransition;
+equation
+  <I>// Set new token number for next iteration</I>
+  num_tokens = pre(new_num_tokens);
+  <I></I>
+  tokenin = inTransition.set and not full;
+  <I></I>
+  when tokenin then
+    new_num_tokens = num_tokens + 1;
+  end when;
+  <I></I>
+  full = num_tokens == N;
+  <I></I>
+  <I>// Report state to input and output transitions</I>
+  inTransition.state = full and not pre(tokenin);
+end P10Capacity;
+</PRE>
+<HR>
+<H2><IMG SRC="PetriNets.Extensions.P01CapacityI.gif" ALT="PetriNets.Extensions.P01Capacity" ALIGN=RIGHT BORDER=1 WIDTH=80  HEIGHT=80 >
+<A NAME="PetriNets.Extensions.P01Capacity"></A><A HREF="PetriNets_Extensions.html#PetriNets.Extensions"
+>PetriNets.Extensions</A>.P01Capacity</H2>
+<B>Place with one input and one output transition</B><p>
+<IMG SRC="PetriNets.Extensions.P01CapacityD.gif" ALT="PetriNets.Extensions.P01Capacity">
+<H3>Parameters</H3><P>
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2>
+<TR><TH>Name</TH><TH>Default</TH><TH>Description</TH></TR>
+<TR><TD>num_tokens_start</TD><TD>0</TD><TD>Initial number of tokens</TD></TR>
+<TR><TD>N</TD><TD>1</TD><TD>Capacity limit for tokens</TD></TR>
+</TABLE>
+<H3>Modelica definition</H3>
+<PRE>
+model P01Capacity &quot;Place with one input and one output transition&quot;
+  parameter Integer num_tokens_start=0 &quot;Initial number of tokens&quot;;
+  parameter Integer N=1 &quot;Capacity limit for tokens&quot;;
+  <I></I>
+  Integer num_tokens(start=num_tokens_start)
+    &quot;number of tokens present on the place&quot;;
+  Boolean empty;
+  <I></I>
+  Integer new_num_tokens(start=num_tokens_start);
+  Boolean tokenout;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.FirePortOut"
+>Interfaces.FirePortOut</A> outTransition;
+equation
+  <I>// Set new token number for next iteration</I>
+  num_tokens = pre(new_num_tokens);
+  <I></I>
+  tokenout = outTransition.fire and not empty;
+  <I></I>
+  when tokenout then
+    new_num_tokens = num_tokens - 1;
+  end when;
+  <I></I>
+  empty = num_tokens == 0;
+  <I></I>
+  <I>// Report state to input and output transitions</I>
+  outTransition.state = not empty and not pre(tokenout);
+end P01Capacity;
+</PRE>
+<HR>
+<H2><IMG SRC="PetriNets.Extensions.P11CapacityI.gif" ALT="PetriNets.Extensions.P11Capacity" ALIGN=RIGHT BORDER=1 WIDTH=80  HEIGHT=80 >
+<A NAME="PetriNets.Extensions.P11Capacity"></A><A HREF="PetriNets_Extensions.html#PetriNets.Extensions"
+>PetriNets.Extensions</A>.P11Capacity</H2>
+<B>Place with one input and one output transition</B><p>
+<IMG SRC="PetriNets.Extensions.P11CapacityD.gif" ALT="PetriNets.Extensions.P11Capacity">
+<H3>Parameters</H3><P>
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2>
+<TR><TH>Name</TH><TH>Default</TH><TH>Description</TH></TR>
+<TR><TD>num_tokens_start</TD><TD>0</TD><TD>Initial number of tokens</TD></TR>
+<TR><TD>N</TD><TD>1</TD><TD>Capacity limit for tokens</TD></TR>
+</TABLE>
+<H3>Modelica definition</H3>
+<PRE>
+model P11Capacity &quot;Place with one input and one output transition&quot;
+  parameter Integer num_tokens_start=0 &quot;Initial number of tokens&quot;;
+  parameter Integer N=1 &quot;Capacity limit for tokens&quot;;
+  <I></I>
+  Integer num_tokens(start=num_tokens_start)
+    &quot;number of tokens present on the place&quot;;
+  Boolean full;
+  Boolean empty;
+  <I></I>
+  Integer new_num_tokens(start=num_tokens_start);
+  Boolean tokenin;
+  Boolean tokenout;
+  Boolean tokeninout;
+  <I></I>
+  Real Qtotal;
+  Real Qavg;
+public
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.SetPortIn"
+>PetriNets.Interfaces.SetPortIn</A> inTransition;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.FirePortOut"
+>PetriNets.Interfaces.FirePortOut</A> outTransition;
+  <A HREF="/library/Modelica/docu/Modelica_Blocks_Interfaces.html#Modelica.Blocks.Interfaces.OutPort"
+>Modelica.Blocks.Interfaces.OutPort</A> outTokens;
+  <A HREF="/library/Modelica/docu/Modelica_Blocks_Interfaces.html#Modelica.Blocks.Interfaces.BooleanOutPort"
+>Modelica.Blocks.Interfaces.BooleanOutPort</A> Bchange;
+equation
+  <I>// Set new token number for next iteration</I>
+  num_tokens = pre(new_num_tokens);
+  <I></I>
+  tokenin = inTransition.set and not full and not outTransition.fire;
+  tokenout = outTransition.fire and not empty and not inTransition.set;
+  tokeninout = inTransition.set and outTransition.fire;
+  <I></I>
+  when {tokenin,tokenout,tokeninout} then
+    new_num_tokens = if edge(tokenin) then num_tokens + 1 else if edge(tokenout
+      ) then num_tokens - 1 else num_tokens;
+    <I></I>
+  end when;
+  <I></I>
+  full = num_tokens == N;
+  empty = num_tokens == 0;
+  <I></I>
+  <I>// Report state to input and output transitions</I>
+  inTransition.state = full and not pre(tokenin) and not pre(tokeninout);
+  outTransition.state = not empty and not pre(tokenout) and not pre(tokeninout)
+    ;
+  <I></I>
+  outTokens.signal[1] = num_tokens;
+  Bchange.signal[1] = not (num_tokens == new_num_tokens);
+  <I></I>
+  der(Qtotal) = num_tokens;
+  Qavg = Qtotal/(time + 1e-3);
+end P11Capacity;
+</PRE>
+<HR>
+<H2><IMG SRC="PetriNets.Extensions.TNoConditionI.gif" ALT="PetriNets.Extensions.TNoCondition" ALIGN=RIGHT BORDER=1 WIDTH=80  HEIGHT=80 >
+<A NAME="PetriNets.Extensions.TNoCondition"></A><A HREF="PetriNets_Extensions.html#PetriNets.Extensions"
+>PetriNets.Extensions</A>.TNoCondition</H2>
+<B>Transition with one input and one output connection</B><p>
+<IMG SRC="PetriNets.Extensions.TNoConditionD.gif" ALT="PetriNets.Extensions.TNoCondition">
+<H3>Modelica definition</H3>
+<PRE>
+model TNoCondition
+  &quot;Transition with one input and one output connection&quot;
+  Boolean fire;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.FirePortIn"
+>PetriNets.Interfaces.FirePortIn</A> inTransition;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.SetPortOut"
+>PetriNets.Interfaces.SetPortOut</A> outTransition;
+equation
+  fire = inTransition.state and not outTransition.state;
+  inTransition.fire = fire;
+  outTransition.set = fire;
+end TNoCondition;
+</PRE>
+<HR>
+<H2><IMG SRC="PetriNets.Extensions.Place11BI.gif" ALT="PetriNets.Extensions.Place11B" ALIGN=RIGHT BORDER=1 WIDTH=80  HEIGHT=80 >
+<A NAME="PetriNets.Extensions.Place11B"></A><A HREF="PetriNets_Extensions.html#PetriNets.Extensions"
+>PetriNets.Extensions</A>.Place11B</H2>
+<B>Place with one input and one output transition</B><p>
+<IMG SRC="PetriNets.Extensions.Place11BD.gif" ALT="PetriNets.Extensions.Place11B">
+<H3>Parameters</H3><P>
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2>
+<TR><TH>Name</TH><TH>Default</TH><TH>Description</TH></TR>
+<TR><TD>initialState</TD><TD>false</TD><TD>Initial value of state</TD></TR>
+</TABLE>
+<H3>Modelica definition</H3>
+<PRE>
+model Place11B &quot;Place with one input and one output transition&quot;
+  parameter Boolean initialState=false &quot;Initial value of state&quot;;
+  Boolean state(final start=initialState) &quot;State of place&quot;;
+protected
+  Boolean newState(final start=initialState);
+public
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.SetPortIn"
+>PetriNets.Interfaces.SetPortIn</A> inTransition;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.FirePortOut"
+>PetriNets.Interfaces.FirePortOut</A> outTransition;
+  <A HREF="/library/Modelica/docu/Modelica_Blocks_Interfaces.html#Modelica.Blocks.Interfaces.BooleanOutPort"
+>Modelica.Blocks.Interfaces.BooleanOutPort</A> BState;
+equation
+  <I>// Set new state for next iteration</I>
+  state = pre(newState);
+  newState = inTransition.set or state and not outTransition.fire;
+  <I></I>
+  <I>// Report state to input and output transitions</I>
+  inTransition.state = state;
+  outTransition.state = state;
+  <I></I>
+  BState.signal[1] = state;
+end Place11B;
+</PRE>
+<HR>
+<H2><IMG SRC="PetriNets.Extensions.SynchronizeNoConditionI.gif" ALT="PetriNets.Extensions.SynchronizeNoCondition" ALIGN=RIGHT BORDER=1 WIDTH=80  HEIGHT=80 >
+<A NAME="PetriNets.Extensions.SynchronizeNoCondition"></A><A HREF="PetriNets_Extensions.html#PetriNets.Extensions"
+>PetriNets.Extensions</A>.SynchronizeNoCondition</H2>
+<B>Transition with two input and one output connections</B><p>
+<IMG SRC="PetriNets.Extensions.SynchronizeNoConditionD.gif" ALT="PetriNets.Extensions.SynchronizeNoCondition">
+<H3>Modelica definition</H3>
+<PRE>
+model SynchronizeNoCondition
+  &quot;Transition with two input and one output connections&quot;
+  Boolean fire;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.FirePortIn"
+>PetriNets.Interfaces.FirePortIn</A> inTransition1;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.FirePortIn"
+>PetriNets.Interfaces.FirePortIn</A> inTransition2;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.SetPortOut"
+>PetriNets.Interfaces.SetPortOut</A> outTransition;
+equation
+  fire = inTransition1.state and inTransition2.state and not
+    outTransition.state;
+  inTransition1.fire = fire;
+  inTransition2.fire = fire;
+  outTransition.set = fire;
+end SynchronizeNoCondition;
+</PRE>
+<HR>
+<H2><IMG SRC="PetriNets.Extensions.ParallelNoConditionI.gif" ALT="PetriNets.Extensions.ParallelNoCondition" ALIGN=RIGHT BORDER=1 WIDTH=80  HEIGHT=80 >
+<A NAME="PetriNets.Extensions.ParallelNoCondition"></A><A HREF="PetriNets_Extensions.html#PetriNets.Extensions"
+>PetriNets.Extensions</A>.ParallelNoCondition</H2>
+<B>Transition with one input and two output connections</B><p>
+<IMG SRC="PetriNets.Extensions.ParallelNoConditionD.gif" ALT="PetriNets.Extensions.ParallelNoCondition">
+<H3>Modelica definition</H3>
+<PRE>
+model ParallelNoCondition
+  &quot;Transition with one input and two output connections&quot;
+  Boolean fire;
+  <I></I>
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.FirePortIn"
+>PetriNets.Interfaces.FirePortIn</A> inTransition;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.SetPortOut"
+>PetriNets.Interfaces.SetPortOut</A> outTransition1;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.SetPortOut"
+>PetriNets.Interfaces.SetPortOut</A> outTransition2;
+equation
+  fire = inTransition.state and not (outTransition1.state or
+    outTransition2.state);
+  inTransition.fire = fire;
+  outTransition1.set = fire;
+  outTransition2.set = fire;
+end ParallelNoCondition;
+</PRE>
+<HR>
+<H2><IMG SRC="PetriNets.Extensions.TDelayWeibullI.gif" ALT="PetriNets.Extensions.TDelayWeibull" ALIGN=RIGHT BORDER=1 WIDTH=80  HEIGHT=80 >
+<A NAME="PetriNets.Extensions.TDelayWeibull"></A><A HREF="PetriNets_Extensions.html#PetriNets.Extensions"
+>PetriNets.Extensions</A>.TDelayWeibull</H2>
+<B>Transition with one input and one output connection</B><p>
+<IMG SRC="PetriNets.Extensions.TDelayWeibullD.gif" ALT="PetriNets.Extensions.TDelayWeibull">
+<H3>Parameters</H3><P>
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2>
+<TR><TH>Name</TH><TH>Default</TH><TH>Description</TH></TR>
+<TR><TD>alpha</TD><TD>1</TD><TD>Weibull shape parameter alpha</TD></TR>
+<TR><TD>beta</TD><TD>2</TD><TD>Weibull shape parameter beta</TD></TR>
+<TR><TD>seed</TD><TD>1973272912</TD><TD>&nbsp;</TD></TR>
+</TABLE>
+<H3>Modelica definition</H3>
+<PRE>
+model TDelayWeibull
+  &quot;Transition with one input and one output connection&quot;
+  parameter Real alpha=1 &quot;Weibull shape parameter alpha&quot;;
+  parameter Real beta=2 &quot;Weibull shape parameter beta&quot;;
+  parameter Integer seed=1973272912;
+  <I></I>
+  Boolean activated;
+  Boolean delay_passed;
+  Boolean fire;
+  <I></I>
+  Real last_activation_time;
+  Real delay;
+  <I></I>
+  Integer Xi(start=seed);
+  Integer Xiplus;
+  Integer m=2147483647;
+  <I>//(2^31) - 1</I>
+  Integer a=7^5;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.FirePortIn"
+>PetriNets.Interfaces.FirePortIn</A> inTransition;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.SetPortOut"
+>PetriNets.Interfaces.SetPortOut</A> outTransition;
+equation
+  <I>//activation of transition</I>
+  activated = inTransition.state;
+  <I></I>
+  <I>//activated and delay passed</I>
+  delay_passed = activated and ((time - delay) &gt; last_activation_time);
+  <I></I>
+  <I>//fire command</I>
+  fire = activated and delay_passed and not outTransition.state;
+  <I></I>
+  <I>//propagate firing to in and output places</I>
+  inTransition.fire = fire;
+  outTransition.set = fire;
+  <I></I>
+  <I>//set activation time</I>
+algorithm
+  when activated then
+    last_activation_time := time;
+    <I>//Multiplicative Linear Congruential Method </I>
+    Xiplus := mod(a*Xi, m);
+    delay := (-(1/alpha)*ln(1 - Xiplus/m))^(1/beta);
+    Xi := Xiplus;
+    <I></I>
+
+      <I>//The built in function only runs for a certain number of samples and then </I>
+    <I>//breaks down</I>
+    <I>//delay := -mean*ln(RandomUniform(time));</I>
+  end when;
+end TDelayWeibull;
+</PRE>
+<HR>
+<H2><IMG SRC="PetriNets.Extensions.TDelayUniformBIRNGI.gif" ALT="PetriNets.Extensions.TDelayUniformBIRNG" ALIGN=RIGHT BORDER=1 WIDTH=80  HEIGHT=80 >
+<A NAME="PetriNets.Extensions.TDelayUniformBIRNG"></A><A HREF="PetriNets_Extensions.html#PetriNets.Extensions"
+>PetriNets.Extensions</A>.TDelayUniformBIRNG</H2>
+<B>Transition with one input and one output connection</B><p>
+<IMG SRC="PetriNets.Extensions.TDelayUniformBIRNGD.gif" ALT="PetriNets.Extensions.TDelayUniformBIRNG">
+<H3>Parameters</H3><P>
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2>
+<TR><TH>Name</TH><TH>Default</TH><TH>Description</TH></TR>
+<TR><TD>min</TD><TD>0</TD><TD>Uniform between min..max</TD></TR>
+<TR><TD>max</TD><TD>1</TD><TD>Uniform between min..max</TD></TR>
+</TABLE>
+<H3>Modelica definition</H3>
+<PRE>
+model TDelayUniformBIRNG
+  &quot;Transition with one input and one output connection&quot;
+  parameter Real min=0 &quot;Uniform between min..max&quot;;
+  parameter Real max=1 &quot;Uniform between min..max&quot;;
+  <I></I>
+  Boolean activated;
+  Boolean delay_passed;
+  Boolean fire;
+  <I></I>
+  Real last_activation_time;
+  Real delay;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.FirePortIn"
+>PetriNets.Interfaces.FirePortIn</A> inTransition;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.SetPortOut"
+>PetriNets.Interfaces.SetPortOut</A> outTransition;
+equation
+  <I>//activation of transition</I>
+  activated = inTransition.state;
+  <I></I>
+  <I>//set activation time</I>
+  when activated then
+    last_activation_time = time;
+    delay = min + (max - min)*(RandomUniform(time));
+  end when;
+  <I></I>
+  <I>//activated and delay passed</I>
+  delay_passed = activated and ((time - delay) &gt; last_activation_time);
+  <I></I>
+  <I>//fire command</I>
+  fire = activated and delay_passed and not outTransition.state;
+  <I></I>
+  <I>//propagate firing to in and output places</I>
+  inTransition.fire = fire;
+  outTransition.set = fire;
+end TDelayUniformBIRNG;
+</PRE>
+<HR>
+<H2><IMG SRC="PetriNets.Extensions.TDelayWeibullBIRNGI.gif" ALT="PetriNets.Extensions.TDelayWeibullBIRNG" ALIGN=RIGHT BORDER=1 WIDTH=80  HEIGHT=80 >
+<A NAME="PetriNets.Extensions.TDelayWeibullBIRNG"></A><A HREF="PetriNets_Extensions.html#PetriNets.Extensions"
+>PetriNets.Extensions</A>.TDelayWeibullBIRNG</H2>
+<B>Transition with one input and one output connection</B><p>
+<IMG SRC="PetriNets.Extensions.TDelayWeibullBIRNGD.gif" ALT="PetriNets.Extensions.TDelayWeibullBIRNG">
+<H3>Parameters</H3><P>
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2>
+<TR><TH>Name</TH><TH>Default</TH><TH>Description</TH></TR>
+<TR><TD>alpha</TD><TD>1</TD><TD>Weibull shape parameter alpha</TD></TR>
+<TR><TD>beta</TD><TD>2</TD><TD>Weibull shape parameter beta</TD></TR>
+</TABLE>
+<H3>Modelica definition</H3>
+<PRE>
+model TDelayWeibullBIRNG
+  &quot;Transition with one input and one output connection&quot;
+  parameter Real alpha=1 &quot;Weibull shape parameter alpha&quot;;
+  parameter Real beta=2 &quot;Weibull shape parameter beta&quot;;
+  <I></I>
+  Boolean activated;
+  Boolean delay_passed;
+  Boolean fire;
+  <I></I>
+  Real last_activation_time;
+  Real delay;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.FirePortIn"
+>PetriNets.Interfaces.FirePortIn</A> inTransition;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.SetPortOut"
+>PetriNets.Interfaces.SetPortOut</A> outTransition;
+equation
+  <I>//activation of transition</I>
+  activated = inTransition.state;
+  <I></I>
+  <I>//activated and delay passed</I>
+  delay_passed = activated and ((time - delay) &gt; last_activation_time);
+  <I></I>
+  <I>//fire command</I>
+  fire = activated and delay_passed and not outTransition.state;
+  <I></I>
+  <I>//propagate firing to in and output places</I>
+  inTransition.fire = fire;
+  outTransition.set = fire;
+  <I></I>
+  <I>//set activation time</I>
+algorithm
+  when activated then
+    last_activation_time := time;
+    delay := (-(1/alpha)*ln(1 - RandomUniform(time)))^(1/beta);
+  end when;
+end TDelayWeibullBIRNG;
+</PRE>
+<HR>
+<H2><IMG SRC="PetriNets.Extensions.TDelayUniformI.gif" ALT="PetriNets.Extensions.TDelayUniform" ALIGN=RIGHT BORDER=1 WIDTH=80  HEIGHT=80 >
+<A NAME="PetriNets.Extensions.TDelayUniform"></A><A HREF="PetriNets_Extensions.html#PetriNets.Extensions"
+>PetriNets.Extensions</A>.TDelayUniform</H2>
+<B>Transition with one input and one output connection</B><p>
+<IMG SRC="PetriNets.Extensions.TDelayUniformD.gif" ALT="PetriNets.Extensions.TDelayUniform">
+<H3>Parameters</H3><P>
+<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2>
+<TR><TH>Name</TH><TH>Default</TH><TH>Description</TH></TR>
+<TR><TD>min</TD><TD>0</TD><TD>Uniform between min..max</TD></TR>
+<TR><TD>max</TD><TD>1</TD><TD>Uniform between min..max</TD></TR>
+<TR><TD>seed</TD><TD>1973272912</TD><TD>&nbsp;</TD></TR>
+</TABLE>
+<H3>Modelica definition</H3>
+<PRE>
+model TDelayUniform
+  &quot;Transition with one input and one output connection&quot;
+  parameter Real min=0 &quot;Uniform between min..max&quot;;
+  parameter Real max=1 &quot;Uniform between min..max&quot;;
+  parameter Integer seed=1973272912;
+  <I></I>
+  Boolean activated;
+  Boolean delay_passed;
+  Boolean fire;
+  <I></I>
+  Real last_activation_time;
+  Real delay;
+  <I></I>
+  Integer Xi(start=seed);
+  Integer Xiplus;
+  Integer m=2147483647;
+  <I>//(2^31) - 1</I>
+  Integer a=7^5;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.FirePortIn"
+>PetriNets.Interfaces.FirePortIn</A> inTransition;
+  <A HREF="PetriNets_Interfaces.html#PetriNets.Interfaces.SetPortOut"
+>PetriNets.Interfaces.SetPortOut</A> outTransition;
+equation
+  <I>//activation of transition</I>
+  activated = inTransition.state;
+  <I></I>
+  <I>//activated and delay passed</I>
+  delay_passed = activated and ((time - delay) &gt; last_activation_time);
+  <I></I>
+  <I>//fire command</I>
+  fire = activated and delay_passed and not outTransition.state;
+  <I></I>
+  <I>//propagate firing to in and output places</I>
+  inTransition.fire = fire;
+  outTransition.set = fire;
+  <I></I>
+  <I>//set activation time</I>
+algorithm
+  when activated then
+    last_activation_time := time;
+    Xiplus := mod(a*Xi, m);
+    delay := min + (max - min)*(Xiplus/m);
+    Xi := Xiplus;
+  end when;
+end TDelayUniform;
+</PRE>
+<HR>
+<address>HTML-documentation generated by <a href="http://www.dynasim.se/">Dymola</a> Tue Apr 30 22:45:11 2002
+.
+</address></BODY>
+</HTML>
